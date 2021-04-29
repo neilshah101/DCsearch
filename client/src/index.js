@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
+import { BaseLayout } from './components/Baselayout';
 import Search from './components/Search'
+import SearchResult from './components/SearchResult'
 import reportWebVitals from './reportWebVitals';
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './stores/reducer';
@@ -24,9 +26,12 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store = {store}>
       <Router history = {history}>
-        <Switch>
-         <Route exact path = "/" component = {Search} />
-        </Switch>
+        <BaseLayout>
+          <Switch>
+           <Route exact path = "/" component = {Search} />
+           <Route exact path = "/search/:searchparam" component = {SearchResult} />
+          </Switch>
+        </BaseLayout>
       </Router>
     </Provider>
   </React.StrictMode>,

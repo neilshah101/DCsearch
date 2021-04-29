@@ -1,4 +1,6 @@
 import * as actionTypes from '../actions/actionTypes'
+import history from '../../utils/history'
+
 
 
 
@@ -12,7 +14,9 @@ export const search = (searchparam) => {
         .then(result => {
             dispatch({type: actionTypes.SEARCH_RESULT, payload: result})
             console.log(result)
-           
+            if(result) {
+                history.push(`/search/${searchparam}`)
+            }
            
         })
 

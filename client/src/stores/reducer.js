@@ -8,6 +8,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'SEARCH_RESULT':
             return {
+                ...state,
                 search_result: action.payload
             }
         
