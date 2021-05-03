@@ -23,15 +23,21 @@ function SearchResult (props){
 
     //for array
     var search_results = props.search_results
-    const images = search_results.inline_images
-    console.log(images)
-    const imageItems =images.map((items, index) => {
+    const organic_results = search_results.organic_results
+    console.log(organic_results)
+    const organic_resultsItems =organic_results.map((items, index) => {
         return <div  key = {index} className="" >
                     
                     <div>
-                        <img src={items.thumbnail}/>
+                        <h3><a href={items.link} target="_blank">{items.title}</a></h3>
                     </div>
-                    
+                    <div>
+                        <a href={items.link} target="_blank">{items.displayed_link}</a>
+                    </div>
+                    <div>
+                        <p>{items.snippet}</p>
+                    </div><br></br>
+                       
                 </div>
     })
 
@@ -47,11 +53,14 @@ function SearchResult (props){
                 </div>
     })
 
+
+
+
     return(
         <div>
             <div id="header">
                 <div id="topbar">
-                    <img id="searchbarimage" src = "../public/images/Logo.png" />
+                    <a href="/"><img id="searchbarimage" src = "../../public/Logo.png" /></a>
                     <div id="searchbar" type="text">
                         <input onChange = {handleChange} id="searchbartext" type="text" name="searchinput" />
                 
@@ -86,7 +95,7 @@ function SearchResult (props){
                     {search_parametersItems}
             </div>
             <div className="" >
-                    {imageItems}
+                    {organic_resultsItems}
             </div>
 
         </div> 
