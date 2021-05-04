@@ -366,7 +366,7 @@ function SearchResult (props){
                         <li id="optionsmenuactive"><NavLink to= {`/search/${searchparam}`}>All</NavLink></li>
                         <li><NavLink to= {`/news/${searchparam}`}>News</NavLink></li>
                         <li>Videos</li>
-                        <li>Images</li>
+                        <li><NavLink to= {`/image/${searchparam}`}>Images</NavLink></li>
                         <li>Maps</li>
                         <li>More</li>
                     </ul>
