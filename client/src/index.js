@@ -7,6 +7,7 @@ import Search from './components/Search'
 import SearchResult from './components/SearchResult'
 import NewsResult from './components/NewsResult'
 import ImageResult from './components/ImageResult'
+import VideoResult from './components/VideoResult'
 import reportWebVitals from './reportWebVitals';
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './stores/reducer';
@@ -34,6 +35,7 @@ ReactDOM.render(
            <Route exact path = "/search/:searchparam" component = {SearchResult} />
            <Route exact path = "/news/:searchparam" component = {NewsResult} />
            <Route exact path = "/image/:searchparam" component = {ImageResult} />
+           <Route exact path = "/video/:searchparam" component = {VideoResult} />
           </Switch>
         </BaseLayout>
       </Router>
