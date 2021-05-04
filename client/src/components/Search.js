@@ -5,6 +5,7 @@ import '../css/App.css';
 
 function Search(props) {
   const [searchparam, setSearchParam] = useState({})
+  const [location, setlocation] = useState({})
 
   const handleSearch = () => {
     props.onSearch(searchparam)
@@ -38,7 +39,8 @@ function Search(props) {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-      onSearch: (searchparam) => dispatch(actionCreators.search(searchparam.searchinput))
+      onSearch: (searchparam) => dispatch(actionCreators.search(searchparam.searchinput)),
+      
   }
 }
 

@@ -4,7 +4,7 @@ import history from '../../utils/history'
 
 
 
-export const search = (searchparam) => {
+export const search = (searchparam, location) => {
     console.log(searchparam)
     return (dispatch) => {
         console.log(searchparam)
@@ -18,6 +18,8 @@ export const search = (searchparam) => {
                 history.push(`/search/${searchparam}`)
             }
            
+        }).catch(error => {
+            console.log(error)
         })
 
     }
