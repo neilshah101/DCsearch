@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react'
 import { connect } from 'react-redux'
+import { NavLink } from "react-router-dom";
 import * as actionCreators from '../stores/creators/actionCreators' 
 import '../css/SearchResult.css'
 
@@ -362,8 +363,8 @@ function SearchResult (props){
                 </div>
                 <div id="optionsbar">
                     <ul id="optionsmenu1">
-                        <li id="optionsmenuactive">All</li>
-                        <li>News</li>
+                        <li id="optionsmenuactive"><NavLink to= {`/search/${searchparam}`}>All</NavLink></li>
+                        <li><NavLink to= {`/news/${searchparam}`}>News</NavLink></li>
                         <li>Videos</li>
                         <li>Images</li>
                         <li>Maps</li>
