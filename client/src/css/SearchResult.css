@@ -4,6 +4,10 @@ body {
 
 }
 
+.box {
+    border : 3px solid black;
+}
+
 #topbar {
     display: flex;
     height: 40px;
