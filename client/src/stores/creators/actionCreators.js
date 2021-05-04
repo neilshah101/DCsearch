@@ -4,7 +4,7 @@ import history from '../../utils/history'
 
 
 
-export const search = (searchparam, location) => {
+export const search = (searchparam) => {
     console.log(searchparam)
     return (dispatch) => {
         console.log(searchparam)
