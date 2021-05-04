@@ -1,6 +1,7 @@
 const initialState = {
     search_result: [],
     search_result_news: [],
+    search_result_image: [],
 
      
 }
@@ -19,6 +20,12 @@ const reducer = (state = initialState, action) => {
                     ...state,
                     search_result_news: action.payload
                 }
+
+                case 'SEARCH_RESULT_IMAGE':
+                    return {
+                        ...state,
+                        search_result_image: action.payload
+                    }
         
         default:
             return state

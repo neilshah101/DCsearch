@@ -23,15 +23,15 @@ function SearchResult (props){
 
 
     
-    var search_result_news = props.search_result_news
+    var search_result_image = props.search_result_image
 
 
 
-    let newsItems =[]
+    let images_resultsItems =[]
     
-    const news_results = search_result_news.news_results
-    console.log(news_results)
-    newsItems =news_results.map((items, index) => {
+    const images_results = search_result_image.images_results
+    console.log(images_results)
+    images_resultsItems =images_results.map((items, index) => {
         return <div  key = {index} className="" >
 
                     
@@ -42,11 +42,9 @@ function SearchResult (props){
                         <a href={items.link} target="_blank"><p>{items.title}</p></a>
                     </div>
                     <div>
-                        <p>{items.source} - {items.date}</p>
+                        <p>{items.source} </p>
                     </div>
-                    <div>
-                        <p>{items.snippet} </p>
-                    </div>
+                    
                     
 
                 </div>
@@ -95,9 +93,10 @@ function SearchResult (props){
                      </ul>
                 </div>
             </div>
+            
             <div className="box" >
                     <h1>News </h1>
-                <p> {newsItems}   </p>
+                <p> {images_resultsItems}   </p>
             </div>
             
         </div> 
@@ -115,7 +114,9 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         search_results: state.search_result,
-        search_result_news : state.search_result_news
+        search_result_news : state.search_result_news,
+        search_result_image : state.search_result_image
+
 
     }
 }
