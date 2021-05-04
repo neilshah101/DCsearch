@@ -5,6 +5,7 @@ import App from './components/App';
 import { BaseLayout } from './components/Baselayout';
 import Search from './components/Search'
 import SearchResult from './components/SearchResult'
+import NewsResult from './components/NewsResult'
 import reportWebVitals from './reportWebVitals';
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './stores/reducer';
@@ -30,6 +31,7 @@ ReactDOM.render(
           <Switch>
            <Route exact path = "/" component = {Search} />
            <Route exact path = "/search/:searchparam" component = {SearchResult} />
+           <Route exact path = "/news/:searchparam" component = {NewsResult} />
           </Switch>
         </BaseLayout>
       </Router>

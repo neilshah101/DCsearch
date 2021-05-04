@@ -22,5 +22,18 @@ export const search = (searchparam, location) => {
             console.log(error)
         })
 
+        fetch(`http://localhost:8081/news/${searchparam}`)
+        .then(response => response.json())
+        .then(result => {
+            dispatch({type: actionTypes.SEARCH_RESULT_NEWS, payload: result})
+            console.log(result)
+            
+           
+        }).catch(error => {
+            console.log(error)
+        })
+
+        
+
     }
 }
