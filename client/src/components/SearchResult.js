@@ -101,7 +101,7 @@ function SearchResult (props){
         return <div>
             <a href={items.source} target="_blank"><img src={items.image}/></a>
         </div>
-    })}}
+    })}} 
 
     
 
