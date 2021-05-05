@@ -351,7 +351,7 @@ function SearchResult (props){
 
 
     return(
-        <div>
+        <div className="searchresult_container">
             <div id="header">
                 <div id="topbar">
                     <a href="/"><img id="searchbarimage" src = "../images/Logo.png" /></a>
@@ -386,8 +386,8 @@ function SearchResult (props){
                 </div>
             </div>
             <div className="box" >
-                    <h1>search_information</h1>
-                <p> {search_informationItems}   </p>
+                    
+                <p> about:{search_informationItems}results   </p>
             </div>
             <div className="box" >
                     <h1>organic_results</h1>  
@@ -427,6 +427,7 @@ function SearchResult (props){
             </div>
             <div className="box" >
                 <h1>images</h1>
+                <div>
                     {images_resultsItems[1]}
                     {images_resultsItems[2]}
                     {images_resultsItems[3]}
@@ -447,6 +448,8 @@ function SearchResult (props){
                     {images_resultsItems[18]}
                     {images_resultsItems[19]}
                     {images_resultsItems[20]}
+                </div>
+                <li><NavLink to= {`/image/${searchparam}`}>Images</NavLink></li>
             </div>
             <div className="box" >
                 <h1>videos</h1>

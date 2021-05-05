@@ -64,7 +64,7 @@ function SearchResult (props){
         <div>
             <div id="header">
                 <div id="topbar">
-                    <a href="/"><img id="searchbarimage" src = "../../public/Logo.png" /></a>
+                    <a href="/"><img id="searchbarimage" src = "../images/Logo.png" /></a>
                     <div id="searchbar" type="text">
                         <input onChange = {handleChange} id="searchbartext" type="text" name="searchinput" />
                 
@@ -85,14 +85,10 @@ function SearchResult (props){
                         <li><NavLink to= {`/news/${searchparam}`}>News</NavLink></li>
                         <li><NavLink to= {`/video/${searchparam}`}>Video</NavLink></li>
                         <li><NavLink to= {`/image/${searchparam}`}>Images</NavLink></li>
-                        <li>Maps</li>
-                        <li>More</li>
+                        
                     </ul>
 
-                    <ul id="optionsmenu2">
-                        <li>Settings</li>
-                        <li>Tools</li>
-                     </ul>
+                    
                 </div>
             </div>
             <div className="box" >
