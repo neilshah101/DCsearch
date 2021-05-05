@@ -296,19 +296,27 @@ function SearchResult (props){
 
 
     // for inline images display
-    let imageItems =[]
-    if (search_results.inline_images){
-    const images = search_results.inline_images
-    console.log(images)
-    imageItems =images.map((items, index) => {
+    var search_result_image = props.search_result_image
+
+
+
+    let images_resultsItems =[]
+    
+    const images_results = search_result_image.images_results
+    console.log(images_results)
+    images_resultsItems =images_results.map((items, index) => {
         return <div  key = {index} className="" >
 
+                    
                     <div>
-                        <img  src={items.thumbnail} />
+                        <a href={items.link} target="_blank"><img src={items.thumbnail}/></a>
                     </div>
+                    
+                    
+                    
 
                 </div>
-})}
+})
    
     // for related searches display
     let related_searchesItems =[]
@@ -346,7 +354,7 @@ function SearchResult (props){
         <div>
             <div id="header">
                 <div id="topbar">
-                    <a href="/"><img id="searchbarimage" src = "../../public/Logo.png" /></a>
+                    <a href="/"><img id="searchbarimage" src = "../images/Logo.png" /></a>
                     <div id="searchbar" type="text">
                         <input onChange = {handleChange} id="searchbartext" type="text" name="searchinput" />
                 
@@ -359,7 +367,7 @@ function SearchResult (props){
                         </button>
                     </div>
                     
-                    <img id="profileimage" src="images/photo.png" />
+                    
                 </div>
                 <div id="optionsbar">
                     <ul id="optionsmenu1">
@@ -367,14 +375,14 @@ function SearchResult (props){
                         <li><NavLink to= {`/news/${searchparam}`}>News</NavLink></li>
                         <li><NavLink to= {`/video/${searchparam}`}>Video</NavLink></li>
                         <li><NavLink to= {`/image/${searchparam}`}>Images</NavLink></li>
-                        <li>Maps</li>
-                        <li>More</li>
+                        {/* <li>Maps</li>
+                        <li>More</li> */}
                     </ul>
 
-                    <ul id="optionsmenu2">
+                    {/* <ul id="optionsmenu2">
                         <li>Settings</li>
                         <li>Tools</li>
-                     </ul>
+                     </ul> */}
                 </div>
             </div>
             <div className="box" >
@@ -385,10 +393,7 @@ function SearchResult (props){
                     <h1>organic_results</h1>  
                     {organic_resultsItems[0]}
             </div>
-            <div className="box" >
-                    <h1>people_also_search_for</h1>
-                    {knowledge_graph_people_also_search_for_Items}
-            </div>
+           
             <div className="box" >
             <h1>Ads</h1>
                 {adsItems}
@@ -422,7 +427,26 @@ function SearchResult (props){
             </div>
             <div className="box" >
                 <h1>images</h1>
-                    {imageItems}
+                    {images_resultsItems[1]}
+                    {images_resultsItems[2]}
+                    {images_resultsItems[3]}
+                    {images_resultsItems[4]}
+                    {images_resultsItems[5]}
+                    {images_resultsItems[6]}
+                    {images_resultsItems[7]}
+                    {images_resultsItems[8]}
+                    {images_resultsItems[9]}
+                    {images_resultsItems[10]}
+                    {images_resultsItems[11]}
+                    {images_resultsItems[12]}
+                    {images_resultsItems[13]}
+                    {images_resultsItems[14]}
+                    {images_resultsItems[15]}
+                    {images_resultsItems[16]}
+                    {images_resultsItems[17]}
+                    {images_resultsItems[18]}
+                    {images_resultsItems[19]}
+                    {images_resultsItems[20]}
             </div>
             <div className="box" >
                 <h1>videos</h1>
@@ -434,6 +458,7 @@ function SearchResult (props){
                     {knowledge_graph_images_Items}
                     {knowledge_graph_people_also_search_for_Items}
                     {knowledge_graph_profiles_Items}
+                    
             </div>
             <div className="box" >
                 <h1>related searches</h1>
@@ -454,7 +479,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        search_results: state.search_result
+        search_results: state.search_result,
+        search_result_image : state.search_result_image
     }
 }
 
