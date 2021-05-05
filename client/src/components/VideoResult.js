@@ -82,10 +82,10 @@ function SearchResult (props){
                 </div>
                 <div id="optionsbar">
                     <ul id="optionsmenu1">
-                    <li id="optionsmenuactive"><NavLink to= {`/search/${searchparam}`}>All</NavLink></li>
+                        <li ><NavLink to= {`/search/${searchparam}`}>All</NavLink></li>
                         <li><NavLink to= {`/news/${searchparam}`}>News</NavLink></li>
                         <li><NavLink to= {`/video/${searchparam}`}>Video</NavLink></li>
-                        <li><NavLink to= {`/image/${searchparam}`}>Images</NavLink></li>
+                        <li id="optionsmenuactive"><NavLink to= {`/image/${searchparam}`}>Images</NavLink></li>
                         <li>Maps</li>
                         <li>More</li>
                     </ul>
