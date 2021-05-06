@@ -67,6 +67,24 @@ app.get('/video/:searchparam', (req, res) => {
 
 })
 
+app.get('/localresult/:searchparam/:latitude/:longitude', (req, res) => {
+    
+    
+    const searchparam = req.params.searchparam
+    const latitude = req.params.latitude
+    const longitude = req.params.longitude
+    console.log(req.params)
+    const api_key = "fa6e60c3ff202a27cf95244140fd6775aacefc7cbc7cfe793b5713edd612e893"
+    
+    fetch(`https://serpapi.com/search.json?engine=google_maps&q=${searchparam}&&ll=%40${latitude}%2C${longitude}%2C15.1z&type=search&api_key=${api_key}`)
+    .then(res => res.json())
+    .then(text => 
+        res.json(text))
+
+})
+
+
+
 app.listen(8081, () => {
     console.log('Server is running...')
 })

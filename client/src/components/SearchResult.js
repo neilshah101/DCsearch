@@ -1,26 +1,44 @@
 import React from 'react';
 import { useState } from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from "react-router-dom";
-import * as actionCreators from '../stores/creators/actionCreators' 
+import { NavLink , Link } from "react-router-dom";
+import * as actionCreators from '../stores/creators/actionCreators'
+import { useEffect , setState } from 'react'
 import '../css/SearchResult.css'
 
 
 
-function SearchResult (props){
+function Search(props) {
     const [searchparam, setSearchParam] = useState({})
-
+    const [latitude, setLatitude] = useState ({})
+    const [longitude, setLongitude] = useState ({})
+  
     const handleSearch = () => {
-     props.onSearch(searchparam)
+      props.onSearch(searchparam, latitude, longitude)
+      
     }
-
+  
     const handleChange = (e) => {
-        setSearchParam({
-            ...searchparam,
-            [e.target.name]: e.target.value,
-        })
+      setSearchParam({
+          ...searchparam,
+          [e.target.name]: e.target.value,
+          
+      })
+  
+      
+      
     }
-
+  
+    useEffect(() => {
+      navigator.geolocation.getCurrentPosition(function(position) {
+    
+        setLatitude (position.coords.latitude)
+        setLongitude (position.coords.longitude) 
+        console.log("Latitude is :", position.coords.latitude);
+        console.log("Longitude is :", position.coords.longitude);
+      });
+    })
+  
 
     //for array
     var search_results = props.search_results
@@ -28,11 +46,20 @@ function SearchResult (props){
 
 
     // for search information display
-    const search_informationItems = Object.keys(search_results).map((items, index) => {
+    const search_information_total_resultsItems = Object.keys(search_results).map((items, index) => {
         return <div   className="" >
                     
                     <div>
-                        <p>{search_results[items].total_results} {search_results[items].time_taken_displayed}</p>
+                        <p>{search_results[items].total_results} </p>
+                    </div>
+                    
+                </div>
+    })
+    const search_time_taken_displayedItems = Object.keys(search_results).map((items, index) => {
+        return <div   className="" >
+                    
+                    <div>
+                        <p>{search_results[items].time_taken_displayed}</p>
                     </div>
                     
                 </div>
@@ -49,7 +76,7 @@ function SearchResult (props){
         return <div  key = {index} className="" >
 
                     <div>
-                        <p>Ad: <a href={items.link} target="_blank"> {items.link}</a></p>
+                        <p>Ad: <a href={items.link} target="_blank"> {items.displayed_link}</a></p>
                     </div>
                     <div>
                         <h3>{items.title}</h3>
@@ -57,13 +84,30 @@ function SearchResult (props){
                     <div>
                         <p>{items.description}</p>
                     </div>
-                    {/* <div>
-                        <p>{items.sitelinks.title}</p>
-                    </div> */}
+                    
 
                 </div>
 })}
 
+let adsSitelinksItems =[]
+if (search_results.ads){
+    if (search_results.ads.sitelink){
+        console.log(search_results.ads.sitelink)
+        adsSitelinksItems = search_results.ads.sitelink.map((items, index) => {
+    return <div  key = {index} className="" >
+
+                <div>
+                    <p>Ad: <a href={items.link} target="_blank"> {items.title}</a></p>
+                </div>
+                
+                <div>
+                    <p>{items.snippets}</p>
+                </div>
+                
+
+            </div>
+})}
+}
 
 
 
@@ -73,7 +117,7 @@ function SearchResult (props){
     if (search_results.knowledge_graph){
         console.log(search_results.knowledge_graph)
         knowledge_graphItems = Object.keys(search_results).map((items, index) => {
-        return <div   className="" >
+        return <div>
                     
                     <div>
                         <h1> {search_results[items].title} </h1>
@@ -122,7 +166,7 @@ function SearchResult (props){
         </div>
     })}}
 
-    // for knowledge_graph_people_also_search_for display
+    // for knowledge_graph_profiles display
     let knowledge_graph_profiles_Items =[]
     if (search_results.knowledge_graph){
     if (search_results.knowledge_graph.profiles){
@@ -178,31 +222,41 @@ function SearchResult (props){
 
     //for local places
     let local_placesItems =[]
-    if (search_results.local_results){
-    const local_results = search_results.local_results
+    var search_result_localresult = props.search_result_localresult
+    if (search_result_localresult.local_results){
+    const local_results = search_result_localresult.local_results
     console.log(local_results)
-    local_placesItems =local_results.places.map((items, index) => {
-        return <div  key = {index} className="" >
-
+    local_placesItems =local_results.map((items, index) => {
+        return <div  key = {index} className="local_places_container" >
                     <div>
-                        <h3> {items.title} </h3>
+                        <div>
+                            <h3> {items.title} </h3>
+                        </div>
+                        <div>
+                            <img src={items.thumbnail}/>
+                        </div>
+                         <div>
+                            <p> Ratings: {items.rating} -- ( {items.reviews} ) --  {items.type}</p>
+                        </div>
+                       
+                        <div>
+                            <p> {items.address} </p>
+                        </div>
+                        <div>
+                            phone:<a href={`tel:${items.phone}`}> {items.phone} </a>
+                        </div>
+                        
                     </div>
                     <div>
-                        <p> Ratings: {items.rating} -- ( {items.reviews} ) --  {items.type}</p>
-                    </div>
-                    <div>
-                        <p> {items.description} </p>
-                    </div>
-                    <div>
-                        <p> {items.address} </p>
-                    </div>
-                    <div>
-                        <img src={items.thumbnail}/>
+                        <div>
+                            <a href={items.website} target="_blank"><img className="local_places_website_img"src ={`../images/world-wide-web.png`}/></a>
+                        </div>
                     </div>
                     
                 </div>
 })}
 
+    
 
 
     // for related questions display
@@ -214,7 +268,7 @@ function SearchResult (props){
         return <div  key = {index} className="" >
 
                     <div>
-                        <p>{items.question}</p>
+                        <a href={items.link} target="_blank"><p>{items.question}</p></a>
                     
                         <p>{items.displayed_link}</p>
                     
@@ -233,7 +287,7 @@ function SearchResult (props){
         return <div  key = {index} className="" >
                     
                     <div>
-                        <h3><a href={items.link} target="_blank">{items.title}</a></h3>
+                        <h2 >{items.title}</h2>
                     </div>
                     <div>
                         <a href={items.link} target="_blank">{items.displayed_link}</a>
@@ -248,28 +302,33 @@ function SearchResult (props){
 
 
     // for inline video display
-    let videoItems =[]
-    if (search_results.inline_videos){
-    const videos = search_results.inline_videos
-    console.log(videos)
-    videoItems =videos.map((items, index) => {
+    var search_result_video = props.search_result_video
+    let search_result_videoItems =[]
+    if (search_result_video.video_results){
+    const video_results = search_result_video.video_results
+    console.log(video_results)
+    search_result_videoItems =video_results.map((items, index) => {
         return <div  key = {index} className="" >
 
                     <div>
-                        <img  src={items.thumbnail} />
+                        <a href={items.link} target="_blank"><p>{items.title}</p></a>
                     </div>
                     <div>
-                        <h3><a href={items.link} target="_blank">{items.title}</a></h3>
+                        <a href={items.link} target="_blank"><p>{items.displayed_link}</p></a>
                     </div>
                     <div>
-                        <p>{items.platform} - {items.channel}</p>
+                        <a href={items.link} target="_blank"><img src={items.thumbnail}/></a>
                     </div>
+                    
                     <div>
-                        <p>{items.date}</p>
-                    </div><br></br>
+                        <p>{items.snippet} </p>
+                    </div>
+                    
+                    
 
                 </div>
-})}
+    })}
+
 
 
 
@@ -303,6 +362,7 @@ function SearchResult (props){
     let images_resultsItems =[]
     
     const images_results = search_result_image.images_results
+    if (search_result_image.images_results){
     console.log(images_results)
     images_resultsItems =images_results.map((items, index) => {
         return <div  key = {index} className="" >
@@ -316,7 +376,7 @@ function SearchResult (props){
                     
 
                 </div>
-})
+    })}
    
     // for related searches display
     let related_searchesItems =[]
@@ -385,89 +445,106 @@ function SearchResult (props){
                      </ul> */}
                 </div>
             </div>
-            <div className="box" >
+            <div className="searchresultsarea">
+                <div className="searchresultcontainer">
+                    <div>
+                        <div id="searchresultsnumber">   
+                            <div> about:{search_information_total_resultsItems}</div>
+                            <div>results({search_time_taken_displayedItems }seconds)   </div>
+                        </div>
+                    </div>
+                    <div className="searchresult" >
                     
-                <p> about:{search_informationItems}results   </p>
-            </div>
-            <div className="box" >
-                    <h1>organic_results</h1>  
-                    {organic_resultsItems[0]}
-            </div>
+                     {organic_resultsItems[0]}
+                    </div>
            
-            <div className="box" >
-            <h1>Ads</h1>
-                {adsItems}
-            </div>
-            <div className="box" >
-            <h1>local map</h1>
-                {local_mapItems}   
-            </div>
-            <div className="box" > 
-                 <h1>local places</h1>
-                 {local_placesItems}
-            </div>
-            <div className="box" >
-                    <h1>related questions</h1>
-                   {related_questionsItems}   
-            </div>
-            {/* <div className="" >
-                    {search_parametersItems}
-            </div> */}
-            <div className="box" >
-                    <h1>organic_results</h1>  
-                    {organic_resultsItems}
-            </div>
-            <div className="box" >
-                    <h1>twitter results</h1>  
-                    {twitter_resultsItems}
-            </div>
-            <div className="box" >
-                    <h1>Top stories</h1>  
-                    {top_storiesItems}
-            </div>
-            <div className="box" >
-                <h1>images</h1>
-                <div>
-                    {images_resultsItems[1]}
-                    {images_resultsItems[2]}
-                    {images_resultsItems[3]}
-                    {images_resultsItems[4]}
-                    {images_resultsItems[5]}
-                    {images_resultsItems[6]}
-                    {images_resultsItems[7]}
-                    {images_resultsItems[8]}
-                    {images_resultsItems[9]}
-                    {images_resultsItems[10]}
-                    {images_resultsItems[11]}
-                    {images_resultsItems[12]}
-                    {images_resultsItems[13]}
-                    {images_resultsItems[14]}
-                    {images_resultsItems[15]}
-                    {images_resultsItems[16]}
-                    {images_resultsItems[17]}
-                    {images_resultsItems[18]}
-                    {images_resultsItems[19]}
-                    {images_resultsItems[20]}
-                </div>
-                <li><NavLink to= {`/image/${searchparam}`}>Images</NavLink></li>
-            </div>
-            <div className="box" >
-                <h1>videos</h1>
-                    {videoItems}
-            </div>
-            <div className="box" >
-                    <h1>knowledge graph</h1>
-                    {knowledge_graphItems}
-                    {knowledge_graph_images_Items}
-                    {knowledge_graph_people_also_search_for_Items}
-                    {knowledge_graph_profiles_Items}
+                    <div className="searchresult_ads" >
+            
+                        {adsItems}
+                        {adsSitelinksItems}
+                    </div>
+                    <div className="localmap" >
                     
+                     {local_mapItems}   
+                    </div>
+                    <div className="" > 
+                        
+                        {local_placesItems[1]}
+                        {local_placesItems[2]}
+                        {local_placesItems[3]}
+                        {local_placesItems[4]}
+                        
+                    </div>
+                    <div className="box" >
+                        <h1>related questions</h1>
+                        {related_questionsItems}   
+                    </div>
+            
+                    <div className="searchresult" >
+                        <h1>organic_results</h1>  
+                        {organic_resultsItems}
+                    </div>
+                    <div className="box" >
+                     <h1>twitter results</h1>  
+                        {twitter_resultsItems}
+                     </div>
+                    <div className="box" >
+                        <h1>Top stories</h1>  
+                        {top_storiesItems}
+                    </div>
+                    <div className="box" >
+                     <h1>images</h1>
+                        <div className="image_container">
+                        {images_resultsItems[1]}
+                        {images_resultsItems[2]}
+                        {images_resultsItems[3]}
+                        {images_resultsItems[4]}
+                        {images_resultsItems[5]}
+                        {images_resultsItems[6]}
+                        {images_resultsItems[7]}
+                        {images_resultsItems[8]}
+                        {images_resultsItems[9]}
+                        {images_resultsItems[10]}
+                        {images_resultsItems[11]}
+                        {images_resultsItems[12]}
+                        {images_resultsItems[13]}
+                        {images_resultsItems[14]}
+                        {images_resultsItems[15]}
+                        {images_resultsItems[16]}
+                        {images_resultsItems[17]}
+                        {images_resultsItems[18]}
+                        {images_resultsItems[19]}
+                        {images_resultsItems[20]}
+                        </div>
+                
+                    </div>
+                    <div className="box" >
+                        <h1>videos</h1>
+                        {search_result_videoItems}
+                    </div>
+                    <div className="box">
+                        <h1>related searches</h1>
+                        {related_searchesItems}
+                    </div>
+                </div>
+                <div >
+                    <div className="knowledge_graph" >
+                        <div>
+                            {knowledge_graphItems}
+                        </div>
+                        <div>
+                            {knowledge_graph_images_Items}
+                        </div>
+                        <div>
+                            {knowledge_graph_people_also_search_for_Items}
+                        </div>
+                        <div>
+                            {knowledge_graph_profiles_Items}
+                        </div>
+                    </div>
+                </div>
+                
             </div>
-            <div className="box" >
-                <h1>related searches</h1>
-                    {related_searchesItems}
-            </div>
-
         </div> 
     )
 }
@@ -475,7 +552,7 @@ function SearchResult (props){
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSearch: (searchparam) => dispatch(actionCreators.search(searchparam.searchinput))
+        onSearch: (searchparam,latitude,longitude) => dispatch(actionCreators.search(searchparam.searchinput,latitude,longitude)),
     }
 }
 
@@ -483,12 +560,30 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         search_results: state.search_result,
-        search_result_image : state.search_result_image
+        search_result_news : state.search_result_news,
+        search_result_image : state.search_result_image,
+        search_result_video: state.search_result_video,
+        search_result_localresult: state.search_result_localresult
+
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(SearchResult)
+export default connect(mapStateToProps,mapDispatchToProps)(Search)
 
 
 
-    
+{/* <div class="wrapper">
+      <div class="search-input">
+        <a href="" target="_blank" hidden></a>
+        <input type="text" placeholder="Type to search..">
+        <div class="autocom-box">
+          <!-- here list are inserted from javascript -->
+        </div>
+        <div class="icon"><i class="fas fa-search"></i></div>
+      </div>
+    </div>
+
+    <!-- <script src="js/suggestions.js"></script> -->
+    <!-- <script src="js/script.js"></script> -->
+
+  </body> */}
