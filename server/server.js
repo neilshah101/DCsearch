@@ -11,7 +11,7 @@ const fetch = require('node-fetch')
 app.use(cors())
 app.use(express.json())
 
-
+const PORT = process.env.PORT || 8080
 
 app.get('/search/:searchparam', (req, res) => {
     
@@ -85,6 +85,6 @@ app.get('/localresult/:searchparam/:latitude/:longitude', (req, res) => {
 
 
 
-app.listen(8081, () => {
+app.listen(PORT, () => {
     console.log('Server is running...')
 })
