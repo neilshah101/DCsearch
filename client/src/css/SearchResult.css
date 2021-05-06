@@ -12,19 +12,24 @@ body {
 .box {
     border : 3px solid black;
 }
+#header {
+    background-color:white;
+    position: fixed;
+    z-index: 5;
+    width: 100%;
+}
 
 #topbar {
     display: flex;
     height: 40px;
     width: 100%;
-    align-items: flex-end;
     position: fixed;
     background-color: white;
-    padding-top:20px; 
+    padding-top: 10px; 
 }
 
 #searchbarimage {
-    height: 50px;
+    height: 90px;
     padding: 10px 28px 10px 30px;
     cursor: pointer;
 }
@@ -139,7 +144,7 @@ html, body {
 
 .knowledge_graph_images_Items img{
     height: 100px;
-    width: 100px;
+    width: 150px;
 }
 .knowledge_graph_images_Items p{
     text-align: center;
@@ -160,6 +165,10 @@ html, body {
     flex-wrap: wrap;
     border-bottom: 1px solid grey;
     padding-bottom: 20px;
+}
+.local_places_img{
+    width: 300px;
+    height: 200px;
 }
 
 
@@ -192,9 +201,7 @@ html, body {
     width:200px;
 }
 
-.searchresult {
-    
-}
+
 
 .searchresult h2 {
     font-size: 19px;
@@ -239,28 +246,45 @@ html, body {
 
 
 }
-/* #bellicon {
-    width: 20px;
-    height: 20px;
-    background-color: rgb(105, 105, 105);
-    background-image: url('images/bell.png');
-    background-size: 12px;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    border-radius: 30px;
-    position: absolute;
-    right: 90px;
-    bottom: 18px;
+.card_flex {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 1px solid grey;
+    width:800px;
+    
 }
 
-#profileimage {
-    border-radius: 50px;
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    right: 40px;
-    bottom: 12px;
-} */
+.card {
+    margin: 10px;
+    padding:10px;
+    border: 1px solid grey;
+
+}
+
+.best-book-h1{
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+    
+}
+
+.image_container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+.images_resultsItems img {
+    width: 150px;
+    height:150px;
+    margin: 10px;
+}
+
 
 #optionsbar {
     width: 100%;
@@ -324,158 +348,20 @@ html, body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 300px;
+    width: 400px;
 }
 
 .relatedlists ul li {
     margin-bottom: 8px;
 }
 
-.pagelist {
-    list-style: none;
-    color: rgb(29, 135, 255);
-    display: flex;
-    flex-direction: row;
-    font-size: 12px;
-    margin-bottom: 30px;
-    margin-left: 100px;
+
+.related_searches{
+    margin-bottom: 40px;
 }
 
-.pagelistprevious::before {
-    content: '<';
-    display: block;
-    position: absolute;
-    right: 12px;
-    top: -35px;
-    color: rgb(29, 135, 255);
-    font-size: 20px;
-    transform: scale(0.7, 1.2);
+.relatedlists_btn{
+    width:200px;
+    font-size:20px;
 }
 
-.pagelistprevious::after {
-    content: '';
-    display: block;
-    position: absolute;
-    right: -40px;
-    top: -35px;
-    width: 40px;
-    height: 40px;
-     /* background-repeat: no-repeat; */
-    background-size: 28px;
-}
-
-.pagelistfirst {
-    margin-left: 20px;
-    font-size: 13px;
-}
-
-.pagelistnumber::before, .pagelistfirst::before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: -2px;
-    top: -21px;
-    border-radius: 50px;
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    z-index: 3;
-}
-
-.pagelistnumber::after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: -6px;
-    top: -25px;
-    border-radius: 50px;
-    width: 18px;
-    height: 18px;
-    background-color: rgb(255, 196, 0);
-    z-index: 2;
-}
-
-.pagelistfirst::after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: -6px;
-    top: -25px;
-    border-radius: 50px;
-    width: 18px;
-    height: 18px;
-    background-color: red;
-    z-index: 2;
-}
-
-.pagelist li {
-    margin-right: 15px;
-    position: relative;
-}
-
-.pagelistnext {
-    margin-left: 40px;
-    font-size: 13px;
-}
-
-.pagelistnext::before {
-    content: '>';
-    display: block;
-    position: absolute;
-    left: 5px;
-    top: -35px;
-    color: rgb(29, 135, 255);
-    font-size: 20px;
-    transform: scale(0.7, 1.2);
-}
-
-.pagelistnext::after {
-    content: '';
-    display: block;
-    position: absolute;
-    left: -55px;
-    top: -37px;
-    width: 50px;
-    height: 50px;
-    background-image: url('');
-    background-repeat: no-repeat;
-    background-size: 48px;
-}
-
-
-#footer {
-    background-color: rgb(238, 238, 238);
-    position: relative;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    font-size: 13px;
-    font-family: 'arial';
-    color: rgb(85, 85, 85);
-}
-
-#footermenu {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    margin-top: 0px;
-    margin-left: 135px;
-    margin-bottom: 0px;
-    padding-bottom: 10px;
-}
-
-#footermenu li {
-    padding-right: 30px;
-}
-
-#footerlocation {
-    display: flex;
-    direction: row;
-    margin-left: 175px;
-    position: relative;
-    top: -5px;
-}
-
-#footerlocation p:nth-of-type(1) {
-    font-weight: bold;
-}
