@@ -14,7 +14,7 @@ export const search = (searchparam , latitude, longitude) => {
         
 
         
-        fetch(`http://localhost:8081/news/${searchparam}`)
+        fetch(`https://radiant-badlands-23037.herokuapp.com/news/${searchparam}`)
         .then(response => response.json())
         .then(result => {
             dispatch({type: actionTypes.SEARCH_RESULT_NEWS, payload: result})
@@ -25,7 +25,7 @@ export const search = (searchparam , latitude, longitude) => {
             console.log(error)
         })
 
-        fetch(`http://localhost:8081/image/${searchparam}`)
+        fetch(`https://radiant-badlands-23037.herokuapp.com/image/${searchparam}`)
         .then(response => response.json())
         .then(result => {
             dispatch({type: actionTypes.SEARCH_RESULT_IMAGE, payload: result})
@@ -36,7 +36,7 @@ export const search = (searchparam , latitude, longitude) => {
             console.log(error)
         })
 
-        fetch(`http://localhost:8081/video/${searchparam}`)
+        fetch(`https://radiant-badlands-23037.herokuapp.com/video/${searchparam}`)
         .then(response => response.json())
         .then(result => {
             dispatch({type: actionTypes.SEARCH_RESULT_VIDEO, payload: result})
@@ -47,7 +47,7 @@ export const search = (searchparam , latitude, longitude) => {
             console.log(error)
         })
 
-        fetch(`http://localhost:8081/localresult/${searchparam}/${latitude}/${longitude}`)
+        fetch(`https://radiant-badlands-23037.herokuapp.com/localresult/${searchparam}/${latitude}/${longitude}`)
         .then(response => response.json())
         .then(result => {
             dispatch({type: actionTypes.SEARCH_RESULT_LOCALRESULT, payload: result})
@@ -61,7 +61,7 @@ export const search = (searchparam , latitude, longitude) => {
 
         
 
-        fetch(`http://localhost:8081/search/${searchparam}`)
+        fetch(`https://radiant-badlands-23037.herokuapp.com/search/${searchparam}`)
         .then(response => response.json())
         .then(result => {
             dispatch({type: actionTypes.SEARCH_RESULT, payload: result})
