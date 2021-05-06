@@ -1,14 +1,18 @@
 import { useState } from 'react'
 import { connect } from 'react-redux'
 import * as actionCreators from '../stores/creators/actionCreators' 
+import { useEffect , setState } from 'react'
+
 import '../css/App.css';
 
 function Search(props) {
   const [searchparam, setSearchParam] = useState({})
-  const [location, setlocation] = useState({})
+  const [latitude, setLatitude] = useState ({})
+  const [longitude, setLongitude] = useState ({})
 
   const handleSearch = () => {
-    props.onSearch(searchparam)
+    props.onSearch(searchparam, latitude, longitude)
+    
   }
 
   const handleChange = (e) => {
@@ -18,11 +22,24 @@ function Search(props) {
         
     })
 
+    
+    
+  }
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function(position) {
+  
+      setLatitude (position.coords.latitude)
+      setLongitude (position.coords.longitude) 
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+    });
+  })
 
 
 
   
-}
+
   return (
     <div className="container">
       <div>
@@ -41,10 +58,11 @@ function Search(props) {
       </div>
     </div>
   );
-}
+  }
 const mapDispatchToProps = (dispatch) => {
   return {
-      onSearch: (searchparam) => dispatch(actionCreators.search(searchparam.searchinput)),
+      onSearch: (searchparam,latitude,longitude) => dispatch(actionCreators.search(searchparam.searchinput,latitude,longitude)),
+      
       
   }
 }

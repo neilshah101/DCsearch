@@ -3,6 +3,7 @@ const initialState = {
     search_result_news: [],
     search_result_image: [],
     search_result_video: [],
+    search_result_localresult: [],
 
      
 }
@@ -33,10 +34,20 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 search_result_video: action.payload
             }
+         case 'SEARCH_RESULT_LOCALRESULT':
+            return {
+                ...state,
+                search_result_localresult: action.payload
+            }
+         
+            
+            
         
         default:
             return state
     }
+
+    
 }
 
 export default reducer

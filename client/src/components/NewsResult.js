@@ -3,23 +3,42 @@ import { useState } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from "react-router-dom";
 import * as actionCreators from '../stores/creators/actionCreators' 
+import { useEffect , setState } from 'react'
 import '../css/SearchResult.css'
 
 
 
-function SearchResult (props){
+function Search(props) {
     const [searchparam, setSearchParam] = useState({})
-
+    const [latitude, setLatitude] = useState ({})
+    const [longitude, setLongitude] = useState ({})
+  
     const handleSearch = () => {
-     props.onSearch(searchparam)
+      props.onSearch(searchparam, latitude, longitude)
+      
     }
-
+  
     const handleChange = (e) => {
-        setSearchParam({
-            ...searchparam,
-            [e.target.name]: e.target.value,
-        })
+      setSearchParam({
+          ...searchparam,
+          [e.target.name]: e.target.value,
+          
+      })
+  
+      
+      
     }
+  
+    useEffect(() => {
+      navigator.geolocation.getCurrentPosition(function(position) {
+    
+        setLatitude (position.coords.latitude)
+        setLongitude (position.coords.longitude) 
+        console.log("Latitude is :", position.coords.latitude);
+        console.log("Longitude is :", position.coords.longitude);
+      });
+    })
+  
 
 
     
@@ -67,7 +86,9 @@ function SearchResult (props){
                     <a href="/"><img id="searchbarimage" src = "../images/Logo.png" /></a>
                     <div id="searchbar" type="text">
                         <input onChange = {handleChange} id="searchbartext" type="text" name="searchinput" />
-                
+                        <div class="autocom-box">
+                            {/* <!-- here list are inserted from javascript --> */}
+                        </div>
                         <button onClick = {handleSearch} id="searchbarbutton">
                             <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path
@@ -103,7 +124,7 @@ function SearchResult (props){
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onSearch: (searchparam) => dispatch(actionCreators.search(searchparam.searchinput))
+        onSearch: (searchparam,latitude,longitude) => dispatch(actionCreators.search(searchparam.searchinput,latitude,longitude)),
     }
 }
 
@@ -116,7 +137,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(SearchResult)
+export default connect(mapStateToProps,mapDispatchToProps)(Search)
 
 
 
