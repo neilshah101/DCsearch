@@ -76,7 +76,10 @@ function Search(props) {
         return <div  key = {index} className="" >
 
                     <div>
-                        <p>Ad: <a href={items.link} target="_blank"> {items.displayed_link}</a></p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-badge-ad-fill" viewBox="0 0 16 16">
+                        <path d="M11.35 8.337c0-.699-.42-1.138-1.001-1.138-.584 0-.954.444-.954 1.239v.453c0 .8.374 1.248.972 1.248.588 0 .984-.44.984-1.2v-.602zm-5.413.237-.734-2.426H5.15l-.734 2.426h1.52z"/>
+                        <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm6.209 6.32c0-1.28.694-2.044 1.753-2.044.655 0 1.156.294 1.336.769h.053v-2.36h1.16V11h-1.138v-.747h-.057c-.145.474-.69.804-1.367.804-1.055 0-1.74-.764-1.74-2.043v-.695zm-4.04 1.138L3.7 11H2.5l2.013-5.999H5.9L7.905 11H6.644l-.47-1.542H4.17z"/>
+                        </svg><p> <a href={items.link} target="_blank"> {items.displayed_link}</a></p>
                     </div>
                     <div>
                         <h3>{items.title}</h3>
@@ -191,8 +194,12 @@ if (search_results.ads){
     if (search_results.twitter_results){
     if (search_results.twitter_results.tweets){
         twitter_resultsItems = search_results.twitter_results.tweets.map((items, index) => {
-        return <div>
-            
+        return <div className="card" style={{width: "18rem"}}>
+            <div>
+                <a href={items.link} target="_blank" className="bi-twitter"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                         <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                        </svg></a>
+            </div>
             <div>
             <p>{items.snippet}</p>
             </div>
@@ -213,8 +220,7 @@ if (search_results.ads){
     local_mapItems = Object.keys(search_results).map((items, index) => {
         return <div   className="" >
                     
-                    
-                        <img src ={search_results[items].image} />
+        <img src ={search_results[items].image} />
                     
                 </div>
     })
@@ -235,7 +241,7 @@ if (search_results.ads){
                             <h3> {items.title} </h3>
                         </div>
                         <div>
-                            <img src={items.thumbnail}/>
+                            <img className="local_places_img" src={items.thumbnail}/>
                         </div>
                          <div>
                             <p> Ratings: {items.rating} -- ( {items.reviews} ) --  {items.type}</p>
@@ -310,17 +316,22 @@ if (search_results.ads){
     const video_results = search_result_video.video_results
     console.log(video_results)
     search_result_videoItems =video_results.map((items, index) => {
-        return <div  key = {index} className="" >
-
+        return <div  key = {index} className="card" style={{width: "18rem"}} >
+                    <div>
+                    <a href={items.link} target="_blank" className="bi-camera-video"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-camera-video" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"/>
+                        </svg></a>
+                    </div><br></br>
+                    <div>
+                        <a href={items.link} target="_blank"><img src={items.thumbnail}/></a>
+                    </div>
                     <div>
                         <a href={items.link} target="_blank"><p>{items.title}</p></a>
                     </div>
                     <div>
                         <a href={items.link} target="_blank"><p>{items.displayed_link}</p></a>
                     </div>
-                    <div>
-                        <a href={items.link} target="_blank"><img src={items.thumbnail}/></a>
-                    </div>
+                    
                     
                     <div>
                         <p>{items.snippet} </p>
@@ -340,7 +351,12 @@ if (search_results.ads){
     const top_stories = search_results.top_stories
     console.log(top_stories)
     top_storiesItems =top_stories.map((items, index) => {
-        return <div  key = {index} className="" >
+        return <div className="card" style={{width: "18rem"}}>
+                    <div>
+                    <a href={items.link} target="_blank" className="bi-camera-video"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-up-right-square-fill" viewBox="0 0 16 16">
+                        <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12zM5.904 10.803 10 6.707v2.768a.5.5 0 0 0 1 0V5.5a.5.5 0 0 0-.5-.5H6.525a.5.5 0 1 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 .707.707z"/>
+                        </svg></a>
+                    </div><br></br>
                     <div>
                         <h3><a href={items.link} target="_blank">{items.title}</a></h3>
                     </div>
@@ -367,7 +383,7 @@ if (search_results.ads){
     if (search_result_image.images_results){
     console.log(images_results)
     images_resultsItems =images_results.map((items, index) => {
-        return <div  key = {index} className="" >
+        return <div  key = {index} className="images_resultsItems" >
 
                     
                     <div>
@@ -386,12 +402,12 @@ if (search_results.ads){
     const related_searches = search_results.related_searches
     console.log(related_searches)
     related_searchesItems =related_searches.map((items, index) => {
-        return <div  key = {index} className="" >
+        return <div  key = {index} className="relatedlists" >
 
                     
-                    <div>
-                        <button><a href={items.link} target="_blank">{items.query}</a></button>
-                    </div><br></br>
+                    <ul>
+                        <li><button className="relatedlists_btn" ><a href={items.link} target="_blank">{items.query}</a></button></li>
+                    </ul><br></br>
                     
 
                 </div>
@@ -416,7 +432,9 @@ if (search_results.ads){
         <div className="searchresult_container">
             <div id="header">
                 <div id="topbar">
-                    <a href="/"><img id="searchbarimage" src = "../images/Logo.png" /></a>
+                    <div>
+                        <a href="/"><img id="searchbarimage" src = "../images/Logo.png" /></a>
+                    </div>
                     <div id="searchbar" type="text">
                         <input onChange = {handleChange} id="searchbartext" type="text" name="searchinput" />
                 
@@ -428,8 +446,6 @@ if (search_results.ads){
                             </svg>
                         </button>
                     </div>
-                    
-                    
                 </div>
                 <div id="optionsbar">
                     <ul id="optionsmenu1">
@@ -490,17 +506,16 @@ if (search_results.ads){
                          
                         {organic_resultsItems}
                     </div>
-                    <div className="box" >
-                     <h1>twitter results</h1>  
+                    <div className="card_flex best-book-h1" >
+                     
                         {twitter_resultsItems}
                      </div>
-                    <div className="box" >
-                        <h1>Top stories</h1>  
+                    <div className="card_flex best-book-h1"  >
                         {top_storiesItems}
                     </div>
-                    <div className="box" >
-                     <h1>images</h1>
-                        <div className="image_container">
+                    <div className="image_container" >
+                    
+                        
                         {images_resultsItems[1]}
                         {images_resultsItems[2]}
                         {images_resultsItems[3]}
@@ -521,16 +536,19 @@ if (search_results.ads){
                         {images_resultsItems[18]}
                         {images_resultsItems[19]}
                         {images_resultsItems[20]}
-                        </div>
+                        
                 
                     </div>
-                    <div className="box" >
-                        <h1>videos</h1>
+                    <div className="card_flex best-book-h1" >
+                        
                         {search_result_videoItems}
                     </div>
-                    <div className="box">
-                        <h1>related searches</h1>
-                        {related_searchesItems}
+                    <div>
+                        <div className="related_searches">
+                            <h3>Realted Searches</h3>
+                        </div>
+                        <div className="card_flex best-book-h1">{related_searchesItems}</div>
+                        
                     </div>
                 </div>
                 <div >
