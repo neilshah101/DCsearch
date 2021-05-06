@@ -101,6 +101,10 @@ html, body {
     outline: none;
 }
 
+.searchresultsarea{
+    margin-top:100px;
+}
+
 
 
 #optionsmenuactive::after {

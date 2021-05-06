@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import * as actionCreators from '../stores/creators/actionCreators' 
 import { useEffect , setState } from 'react'
 import '../css/SearchResult.css'
+import '../css/NewsResult.css'
 
 
 
@@ -51,7 +52,7 @@ function Search(props) {
     const news_results = search_result_news.news_results
     console.log(news_results)
     newsItems =news_results.map((items, index) => {
-        return <div  key = {index} className="" >
+        return <div  key = {index} className="card" style={{width: "25rem"}} >
 
                     
                     <div>
@@ -112,9 +113,9 @@ function Search(props) {
                     
                 </div>
             </div>
-            <div className="box" >
-                    <h1>News </h1>
-                <p> {newsItems}   </p>
+            <div className="newsResult_page_container" >
+                    
+               {newsItems}  
             </div>
             
         </div> 
