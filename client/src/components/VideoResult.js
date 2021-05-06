@@ -50,7 +50,7 @@ function Search(props) {
     const video_results = search_result_video.video_results
     console.log(video_results)
     search_result_videoItems =video_results.map((items, index) => {
-        return <div  key = {index} className="" >
+        return <div  key = {index} className="card" style={{width: "25rem"}} >
 
                     <div>
                         <a href={items.link} target="_blank"><p>{items.title}</p></a>
@@ -111,9 +111,13 @@ function Search(props) {
                 </div>
             </div>
             
-            <div className="box" >
-                    <h1>Videos </h1>
-                 {search_result_videoItems}   
+            <div className="newsResult_page_container" >
+                    <div>
+                       <img className="newsResult_page_items_container_img" src="../images/video.jpg" alt=""></img>
+                    </div>
+                    <div className="newsResult_page_items_container">
+                        {search_result_videoItems}   
+                    </div>
             </div>
             
         </div> 

@@ -114,8 +114,12 @@ function Search(props) {
                 </div>
             </div>
             <div className="newsResult_page_container" >
-                    
-               {newsItems}  
+                    <div>
+                       <img className="newsResult_page_items_container_img" src="../images/news.jpg" alt=""></img>
+                    </div>
+                    <div className="newsResult_page_items_container">
+                        {newsItems}   
+                    </div>
             </div>
             
         </div> 
