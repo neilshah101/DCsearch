@@ -83,7 +83,7 @@ function Search(props) {
         <div>
             <div id="header">
                 <div id="topbar">
-                    <a href="/"><img id="searchbarimage" src = "../../public/Logo.png" /></a>
+                    <a href="/"><img id="searchbarimage" src = "../images/Logo.png" /></a>
                     <div id="searchbar" type="text">
                         <input onChange = {handleChange} id="searchbartext" type="text" name="searchinput" />
                 
@@ -96,7 +96,7 @@ function Search(props) {
                         </button>
                     </div>
                     
-                    <img id="profileimage" src="images/photo.png" />
+                    
                 </div>
                 <div id="optionsbar">
                     <ul id="optionsmenu1">

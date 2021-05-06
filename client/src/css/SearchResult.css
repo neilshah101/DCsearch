@@ -110,13 +110,47 @@ html, body {
 } 
 
 .knowledge_graph{
-    padding-left: 40px;
-    width: 450px;
+    padding-left: 80px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+
 }
 .knowledge_graph_general{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+}
+.knowlege_graph_spacing_items{
+    margin:20px;
+
+}
+
+.knowledge_graph_images_Items{
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top:50px ;
+    border-bottom: 1px solid grey;
+}
+
+.knowledge_graph_images_Items img{
+    height: 100px;
+    width: 100px;
+}
+.knowledge_graph_images_Items p{
+    text-align: center;
+}
+.related_questions{
+    border-bottom: 1px solid grey;
+}
+
+.related_questionsItems{
+    margin-top :30px;
+    margin-bottom :30px;
 }
 
 .local_places_container{
@@ -159,7 +193,7 @@ html, body {
 }
 
 .searchresult {
-    margin-left: 8px;
+    
 }
 
 .searchresult h2 {

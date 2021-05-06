@@ -144,7 +144,9 @@ if (search_results.ads){
     if (search_results.knowledge_graph.header_images){
     knowledge_graph_images_Items = search_results.knowledge_graph.header_images.map((items, index) => {
         return <div>
-            <a href={items.source} target="_blank"><img src={items.image}/></a>
+            
+                <a  href={items.source} target="_blank"><img src={items.image}/></a>
+        
         </div>
     })}} 
 
@@ -155,13 +157,13 @@ if (search_results.ads){
     if (search_results.knowledge_graph){
     if (search_results.knowledge_graph.people_also_search_for){
     knowledge_graph_people_also_search_for_Items = search_results.knowledge_graph.people_also_search_for.map((items, index) => {
-        return <div>
+        return <div className="knowlege_graph_spacing_items">
             
             <div>
             <a href={items.link} target="_blank"><img src={items.image}/></a>
             </div>
             <div>
-                {items.name}
+               <p> {items.name}</p>
             </div>
         </div>
     })}}
@@ -171,10 +173,10 @@ if (search_results.ads){
     if (search_results.knowledge_graph){
     if (search_results.knowledge_graph.profiles){
         knowledge_graph_profiles_Items = search_results.knowledge_graph.profiles.map((items, index) => {
-        return <div>
+        return <div className="knowlege_graph_spacing_items">
             
             <div>
-            <a href={items.link} target="_blank"><img src={items.image}/></a>
+                <a href={items.link} target="_blank"><img src={items.image}/></a>
             </div>
             <div>
                 {items.name}
@@ -265,7 +267,7 @@ if (search_results.ads){
     const related_questions = search_results.related_questions
     console.log(related_questions)
     related_questionsItems =related_questions.map((items, index) => {
-        return <div  key = {index} className="" >
+        return <div  key = {index} className="related_questions" >
 
                     <div>
                         <a href={items.link} target="_blank"><p>{items.question}</p></a>
@@ -475,13 +477,17 @@ if (search_results.ads){
                         {local_placesItems[4]}
                         
                     </div>
-                    <div className="box" >
-                        <h1>related questions</h1>
-                        {related_questionsItems}   
+                    <div className="related_questionsItems" >
+                            <div>
+                            People also ask :
+                            </div>
+                            <div>
+                            {related_questionsItems}  
+                        </div> 
                     </div>
             
                     <div className="searchresult" >
-                        <h1>organic_results</h1>  
+                         
                         {organic_resultsItems}
                     </div>
                     <div className="box" >
@@ -533,13 +539,27 @@ if (search_results.ads){
                             {knowledge_graphItems}
                         </div>
                         <div>
-                            {knowledge_graph_images_Items}
+                            <div className= "knowledge_graph_images_Items">
+                                {knowledge_graph_images_Items}
+                            </div>
                         </div>
                         <div>
-                            {knowledge_graph_people_also_search_for_Items}
+                            <div className= "knowledge_graph_images_Items">
+                                <div>
+                                    People also search for
+                                </div>
+                                <div className= "knowledge_graph_images_Items">
+                                {knowledge_graph_people_also_search_for_Items}
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            {knowledge_graph_profiles_Items}
+                        <div className= "knowledge_graph_images_Items"s>
+                            <div>
+                                Find Us On
+                            </div>
+                            <div className= "knowledge_graph_images_Items">
+                                {knowledge_graph_profiles_Items}
+                            </div>
                         </div>
                     </div>
                 </div>

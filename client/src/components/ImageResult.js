@@ -94,7 +94,7 @@ function Search(props) {
                         </button>
                     </div>
                     
-                    <img id="profileimage" src="images/photo.png" />
+                    
                 </div>
                 <div id="optionsbar">
                     <ul id="optionsmenu1">
