@@ -12,7 +12,7 @@ An application used to give your result for your search query using Google api, 
 
 #### Example:   
 
-![](https://github.com/neilshah101/daily-practise/blob/main/iron%20man%20reactor_html_css/iron-man-reactor-ani.gif)
+![](https://github.com/neilshah101/DCsearch/blob/main/images/home_screen.png)
 
 [ PRETEND OTHER SCREEN SHOT IS HERE ] -->
 
