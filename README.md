@@ -8,13 +8,13 @@ An application used to give your result for your search query using Google api, 
 
 
 
-<!-- ## Project Screen Shot(s)
+## Project Screen Shot(s)
 
 #### Example:   
 
 ![](https://github.com/neilshah101/DCsearch/blob/main/images/home_screen.png)
 
-[ PRETEND OTHER SCREEN SHOT IS HERE ] -->
+<!-- [ PRETEND OTHER SCREEN SHOT IS HERE ] -->
 
 ## Installation and Setup Instructions
 
