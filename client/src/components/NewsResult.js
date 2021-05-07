@@ -84,7 +84,7 @@ function Search(props) {
         <div>
             <div id="header">
                 <div id="topbar">
-                    <a href="/"><img id="searchbarimage" src = "../images/Logo.png" /></a>
+                    <a href="/"><img id="searchbarimage" src = "../images/logo.gif" /></a>
                     <div id="searchbar" type="text">
                         <input onChange = {handleChange} id="searchbartext" type="text" name="searchinput" />
                         <div class="autocom-box">

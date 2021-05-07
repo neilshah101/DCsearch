@@ -43,7 +43,7 @@ function Search(props) {
   return (
     <div className="container">
       <div>
-      <a href="/"><img style={{height: "300px"}} id="searchbarimage1" src = "../images/Logo.png" /></a>
+      <a href="/"><img style={{height: "300px"}} id="searchbarimage1" src = "../images/logo.gif" /></a>
       </div>
       <div id="searchbar" type="text">
         <input onChange = {handleChange} id="searchbartext" type="text" name="searchinput" />

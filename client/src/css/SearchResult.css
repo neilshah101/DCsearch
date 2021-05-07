@@ -266,6 +266,9 @@ html, body {
     border: 1px solid grey;
 
 }
+.card:hover {
+    border: 5px solid grey;
+}
 
 .best-book-h1{
   
@@ -289,6 +292,25 @@ html, body {
     margin: 10px;
 }
 
+img:hover {
+    border: 5px solid grey;
+}
+a {
+    color:black;
+}
+button:hover{
+    background-color:blue;
+    
+}
+
+button a:hover {
+    background-color:blue;
+    color:aliceblue;
+}
+a:hover {
+    
+    color:brown;
+}
 
 #optionsbar {
     width: 100%;
