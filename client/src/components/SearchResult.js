@@ -465,12 +465,7 @@ if (search_results.ads){
             </div>
             <div className="searchresultsarea">
                 <div className="searchresultcontainer">
-                    <div>
-                        <div id="searchresultsnumber">   
-                            <div> about:{search_information_total_resultsItems}</div>
-                            <div>results({search_time_taken_displayedItems }seconds)   </div>
-                        </div>
-                    </div>
+                    
                     <div className="searchresult" >
                     
                      {organic_resultsItems[0]}
@@ -582,6 +577,14 @@ if (search_results.ads){
                     </div>
                 </div>
                 
+            </div>
+            <div>
+                <footer>
+                    <p>Created by: neil shah<br></br>
+                    © 2021 Copyright: www.dcsearch.com<br></br>
+                    <a href="mailto:neilshah101@gmail.com">neilshah101@gmail.com</a></p>
+                </footer>
+
             </div>
         </div> 
     )
